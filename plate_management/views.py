@@ -1,7 +1,14 @@
+from django.contrib.auth.decorators import LoginView
 from django.shortcuts import redirect, render
 
 from .forms import InvoiceForm
 
+
+class CustomLoginView(LoginView):
+    template_name = 'login.html'
+
+    def get_success_url(self):
+        return '/dashboard/'
 
 def upload_invoice(request):
     if request.method == 'POST':
